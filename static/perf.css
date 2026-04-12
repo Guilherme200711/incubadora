@@ -52,10 +52,8 @@ body {
     font-size: 13px;
     font-weight: 500;
     transition: all 0.25s ease;
-    
-   text-decoration: none;
+    text-decoration: none;
     color: inherit;
-
     backdrop-filter: blur(4px);
 }
 
@@ -192,10 +190,61 @@ td {
     color: #6b7280;
 }
 
-/* RESPONSIVO */
+/* =====================================================
+   RESPONSIVO — SEM MUDAR DESKTOP
+===================================================== */
+
+/* TABLET */
 @media (max-width: 900px) {
     .filters {
         flex-direction: column;
         gap: 12px;
+    }
+
+    .header-section h1 {
+        font-size: 26px;
+    }
+
+    table {
+        min-width: 900px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .topbar {
+        flex-direction: column;
+        height: auto;
+        padding: 16px;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .header-section h1 {
+        font-size: 22px;
+    }
+
+    .header-section p {
+        font-size: 14px;
+    }
+
+    table {
+        min-width: 800px;
+    }
+}
+
+/* MOBILE PEQUENO */
+@media (max-width: 400px) {
+    .brand {
+        font-size: 16px;
+    }
+
+    .btn-secondary {
+        font-size: 12px;
+        padding: 6px 14px;
     }
 }

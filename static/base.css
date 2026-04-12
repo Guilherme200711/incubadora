@@ -73,3 +73,16 @@ body {
     font-size: 13px;
     margin-top: auto;
 }
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px 20px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+}

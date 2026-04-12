@@ -1,9 +1,4 @@
-
 /* HERO */
-
-.hero .btn {
-    text-decoration: none;
-}
 .hero {
     min-height: 85vh;
     display: flex;
@@ -39,6 +34,7 @@
     border-radius: var(--radius-sm);
     font-weight: 600;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .btn:hover {
@@ -78,4 +74,44 @@
     padding: 32px;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-soft);
+}
+
+/* RESPONSIVO */
+@media (max-width: 1024px) {
+    .hero {
+        background-size: 55%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 72px 24px;
+        background:
+            linear-gradient(to bottom, rgba(0,0,0,.8), rgba(0,0,0,.6)),
+            url("/static/Designer.png") no-repeat center bottom;
+        background-size: cover;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-content h2 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 26px;
+    }
+
+    .card {
+        padding: 24px;
+    }
 }
