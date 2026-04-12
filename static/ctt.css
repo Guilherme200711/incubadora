@@ -1,63 +1,62 @@
-/* ==============================
-   CONTATO
-============================== */
+/* =====================================================
+   CONTATO — VISUAL CORPORATIVO REAL
+===================================================== */
 
-.contato-page {
-    padding: clamp(48px, 10vw, 80px) 20px;
+/* header */
+.page-header {
+    text-align: center;
+    padding: 70px 24px 40px;
 }
 
-.contato-container {
-    max-width: 600px;
-    margin: 0 auto;
-
-    background: #fff;
-    padding: clamp(24px, 5vw, 40px);
-    border-radius: 16px;
-
-    box-shadow: 0 12px 24px rgba(0,0,0,.12);
-}
-
-.contato-container h2 {
-    font-size: clamp(22px, 4vw, 28px);
+.page-header h2 {
+    font-size: 32px;
+    font-weight: 700;
     color: var(--primary);
-    text-align: center;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
 }
 
-.contato-container p {
-    text-align: center;
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 32px;
+.page-header p {
+    font-size: 15px;
+    color: var(--text-muted);
 }
 
-/* CAMPOS */
-
-.contato-container input,
-.contato-container textarea {
-    width: 100%;
-    padding: 12px 14px;
-    font-size: 14px;
-
-    border-radius: 10px;
-    border: 1px solid #ccc;
+/* container central */
+.contact-container {
+    max-width: 520px;
+    margin: 0 auto 100px;
+    padding: 0 24px;
 }
 
-.contato-container textarea {
-    min-height: 140px;
+/* CARD (forçado pra aparecer) */
+.contact-container > div {
+    background: var(--white);
+    padding: 44px 48px;
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-strong);
+
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
 }
 
-.contato-container input:focus,
-.contato-container textarea:focus {
-    outline: none;
-    border-color: var(--primary);
+/* linhas */
+.contact-container p {
+    font-size: 16px;
+    color: var(--text-main);
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-/* BOTÃO */
-
-.contato-container .btn {
-    margin-top: 24px;
-    width: 100%;
+/* rótulo */
+.contact-container strong {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: var(--primary);
 }
 
 /* =====================================================
