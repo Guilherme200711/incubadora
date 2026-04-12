@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Ranking de Ideias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/base.css">
+    <link rel="stylesheet" href="/static/rank.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">Incubadora Nissan</div>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/formulario">Formulário</a></li>
+        <li><a href="/ranking">Ranking</a></li>
+        <li><a href="/contato">Contato</a></li>
+    </ul>
+</nav>
+
+<main>
+    <div class="page-header">
+        <h2>Ranking de Ideias</h2>
+        <p>Ideias aprovadas com maior impacto</p>
+    </div>
+
+    <div class="ranking-container" id="ranking"></div>
+</main>
+
+<footer class="footer">
+    © 2026 Nissan - Paint Shop Performance
+</footer>
+
+<script>
+fetch("/api/ideias")
+.then(r => r.json())
+.then(data => {
+    const ranking = document.getElementById("ranking");
+    const aprovadas = data
+        .filter(i => i.status === "Aprovada")
+        .sort((a, b) => b.pontuacao - a.pontuacao);
+
+    if (!aprovadas.length) {
+        ranking.innerHTML = "<p style='text-align:center'>Nenhuma ideia aprovada.</p>";
+        return;
+    }
+
+    aprovadas.forEach(i => {
+        ranking.innerHTML += `
+        <div class="ranking-item">
+            <div class="ranking-text">
+                <strong>${i.descricao}</strong>
+                <span>${i.nome} • ${i.area}</span>
+            </div>
+            <div class="ranking-score">${i.pontuacao}</div>
+        </div>`;
+    });
+});
+</script>
+
+</body>
+</html>

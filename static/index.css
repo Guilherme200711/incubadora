@@ -1,0 +1,81 @@
+
+/* HERO */
+
+.hero .btn {
+    text-decoration: none;
+}
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(to right, rgba(0,0,0,.75), rgba(0,0,0,.4)),
+        url("/static/Designer.png") no-repeat right center;
+    background-size: contain;
+}
+
+.hero-content {
+    margin-left: 8%;
+    color: var(--white);
+    max-width: 520px;
+}
+
+.hero-content h1 {
+    font-size: 44px;
+}
+
+.hero-content h2 {
+    font-size: 20px;
+    margin-bottom: 36px;
+    opacity: .9;
+}
+
+/* BOTÃO */
+.btn {
+    padding: 14px 36px;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--primary-dark);
+}
+
+/* SOBRE */
+.sobre {
+    background: var(--white);
+    padding: 96px 24px;
+    text-align: center;
+}
+
+.sobre h2 {
+    font-size: 32px;
+    color: var(--primary);
+}
+
+.sobre p {
+    max-width: 900px;
+    margin: 18px auto;
+    color: var(--text-muted);
+}
+
+/* CARDS */
+.cards-container {
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 0 24px;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card {
+    background: var(--white);
+    padding: 32px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+}

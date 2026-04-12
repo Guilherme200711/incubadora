@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel da Performance | Incubadora Nissan</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/perf.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-left">
+        <span class="brand">Incubadora Nissan</span>
+        <span class="restricted">Área Restrita</span>
+    </div>
+
+    <div class="topbar-right">
+        <button class="btn-secondary"><a href="/">← Voltar</a></button>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="header-section">
+        <h1>Painel da Performance</h1>
+        <p>Gestão, avaliação e acompanhamento das ideias submetidas pelos colaboradores.</p>
+    </section>
+
+    <section class="filters">
+        <input type="text" placeholder="Buscar por nome ou matrícula">
+        <select>
+            <option>Todos os status</option>
+            <option>Aprovada</option>
+            <option>Em análise</option>
+            <option>Reprovada</option>
+        </select>
+    </section>
+
+    <section class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Matrícula</th>
+                    <th>Área</th>
+                    <th>Ideia</th>
+                    <th>Status</th>
+                    <th>Pontuação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Guilherme</td>
+                    <td>9001</td>
+                    <td>Paint Shop</td>
+                    <td>Incubadora</td>
+                    <td>
+                        <select class="status approved">
+                            <option>Aprovada</option>
+                            <option>Em análise</option>
+                            <option>Reprovada</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="number" value="10" class="score-input">
+                    </td>
+                    <td class="actions">
+                        <button class="icon save" title="Salvar">💾</button>
+                        <button class="icon delete" title="Excluir">🗑️</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+</main>
+
+<footer class="footer">
+    © 2026 Nissan · Paint Shop Performance · Incubadora de Ideias
+</footer>
+<script src="/static/perf.js"></script>
+
+</body>
+</html>

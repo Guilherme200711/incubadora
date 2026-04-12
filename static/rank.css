@@ -1,0 +1,102 @@
+/* =====================================================
+   PÁGINA DE RANKING — VISUAL REFINADO
+===================================================== */
+
+/* header */
+.page-header {
+    text-align: center;
+    padding: 70px 24px 50px;
+}
+
+.page-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    font-size: 15px;
+    color: var(--text-muted);
+}
+
+/* container */
+.ranking-container {
+    max-width: 900px;
+    margin: 0 auto 100px;
+    padding: 0 24px;
+}
+
+/* item do ranking */
+.ranking-item {
+    background: var(--white);
+    padding: 28px 34px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.ranking-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-strong);
+}
+
+/* texto da ideia */
+.ranking-text strong {
+    font-size: 18px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.ranking-text span {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* pontuação */
+.ranking-score {
+    background: linear-gradient(
+        135deg,
+        rgba(197,0,42,.12),
+        rgba(197,0,42,.20)
+    );
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 18px;
+
+    padding: 14px 22px;
+    border-radius: 999px;
+
+    min-width: 72px;
+    text-align: center;
+}
+
+/* =====================================================
+   DESTAQUE DO TOP 1
+   (sem mudar JS, pega o primeiro automaticamente)
+===================================================== */
+.ranking-container .ranking-item:first-child {
+    border-left: 6px solid var(--primary);
+}
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+@media (max-width: 640px) {
+    .ranking-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ranking-score {
+        align-self: flex-end;
+    }
+}
