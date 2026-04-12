@@ -1,16 +1,26 @@
+/* =====================================================
+   FORMULÁRIO — LARGO, NORMAL, SEM EXAGERO
+===================================================== */
+
+/* área da página */
 .form-page {
     padding: 60px 20px 80px;
 }
 
+/* ✅ CARD DO FORMULÁRIO (LARGO DE VERDADE) */
 .form-page form {
+    width: 100%;
     max-width: 600px;
     margin: 0 auto;
+
     background: #fff;
     padding: 36px 44px;
     border-radius: 16px;
+
     box-shadow: 0 12px 24px rgba(0,0,0,.12);
 }
 
+/* cabeçalho */
 .form-header {
     text-align: center;
     margin-bottom: 32px;
@@ -18,7 +28,9 @@
 
 .form-header h2 {
     font-size: 28px;
+    font-weight: 700;
     color: #c5002a;
+    margin-bottom: 6px;
 }
 
 .form-header p {
@@ -26,16 +38,27 @@
     color: #666;
 }
 
-label {
-    font-size: 14px;
-    font-weight: 600;
+/* grupos */
+.form-group {
+    margin-bottom: 22px;
 }
 
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* campos */
 input,
 select,
 textarea {
     width: 100%;
     padding: 12px 14px;
+    font-size: 14px;
+
     border-radius: 10px;
     border: 1px solid #ccc;
 }
@@ -44,18 +67,55 @@ textarea {
     min-height: 140px;
 }
 
-form .btn {
-    margin-top: 28px;
-    width: 100%;
+/* foco */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #c5002a;
 }
 
-/* RESPONSIVO */
-@media (max-width: 600px) {
+/* botão */
+form .btn {
+    margin-top: 28px;
+
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+
+    background: #c5002a;
+    color: #fff;
+
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+form .btn:hover {
+    opacity: 0.95;
+}
+
+/* =====================================================
+   RESPONSIVO — SEM ALTERAR DESKTOP
+===================================================== */
+
+@media (max-width: 768px) {
+    .form-page {
+        padding: 40px 16px 60px;
+    }
+
     .form-page form {
-        padding: 24px 20px;
+        padding: 28px 22px;
     }
 
     .form-header h2 {
         font-size: 22px;
+    }
+}
+
+@media (max-width: 420px) {
+    .form-page form {
+        padding: 24px 18px;
     }
 }
