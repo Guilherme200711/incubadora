@@ -1,20 +1,20 @@
 /* =====================================================
-   HERO
+   HERO — DESKTOP FIRST (ESTÁVEL E BONITO)
 ===================================================== */
 
 .hero {
     min-height: 85vh;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
 
-    padding: 0 clamp(20px, 6vw, 80px);
+    padding: 0 80px;
 
     background:
         linear-gradient(to right, rgba(0,0,0,.75), rgba(0,0,0,.4)),
         url("/static/Designer.png") no-repeat right center;
 
-    background-size: min(45vw, 520px);
+    background-size: 520px auto;
+    background-color: #3a3a3a;
 }
 
 .hero-content {
@@ -23,12 +23,12 @@
 }
 
 .hero-content h1 {
-    font-size: clamp(28px, 5vw, 44px);
+    font-size: 44px;
 }
 
 .hero-content h2 {
-    font-size: clamp(15px, 2.5vw, 20px);
-    margin-bottom: 28px;
+    font-size: 20px;
+    margin-bottom: 36px;
     opacity: .9;
 }
 
@@ -44,24 +44,29 @@
     text-decoration: none;
 }
 
+.btn:hover {
+    background: var(--primary-dark);
+}
+
 /* =====================================================
    SOBRE
 ===================================================== */
 
 .sobre {
     background: var(--white);
-    padding: clamp(56px, 10vw, 96px) 20px;
+    padding: 96px 24px;
     text-align: center;
 }
 
 .sobre h2 {
-    font-size: clamp(24px, 5vw, 32px);
+    font-size: 32px;
     color: var(--primary);
+    margin-bottom: 12px;
 }
 
 .sobre p {
     max-width: 900px;
-    margin: 18px auto;
+    margin: 0 auto;
     color: var(--text-muted);
     line-height: 1.6;
 }
@@ -72,8 +77,8 @@
 
 .cards-container {
     max-width: 1100px;
-    margin: clamp(48px, 8vw, 80px) auto;
-    padding: 0 20px;
+    margin: 80px auto;
+    padding: 0 24px;
 
     display: grid;
     gap: 24px;
@@ -86,18 +91,31 @@
 
 .card {
     background: var(--white);
-    padding: clamp(20px, 4vw, 32px);
+    padding: 32px;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-soft);
 }
 
 /* =====================================================
-   MOBILE — CORREÇÃO REAL
+   RESPONSIVO — NOTEBOOK / TABLET
+===================================================== */
+
+@media (max-width: 1024px) {
+    .hero {
+        padding: 0 48px;
+        background-size: 420px auto;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+}
+
+/* =====================================================
+   RESPONSIVO — MOBILE (CORREÇÃO REAL)
 ===================================================== */
 
 @media (max-width: 768px) {
-
-    /* HERO */
     .hero {
         min-height: auto;
         padding: 72px 20px;
@@ -108,7 +126,7 @@
 
         background:
             linear-gradient(to bottom, rgba(0,0,0,.85), rgba(0,0,0,.65)),
-            url("/static/Designer.png") no-repeat center center;
+            url("/static/Designer.png") no-repeat center bottom;
 
         background-size: cover;
     }
@@ -117,9 +135,19 @@
         max-width: 100%;
     }
 
-    /* CARDS = 1 COLUNA GARANTIDA */
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-content h2 {
+        font-size: 16px;
+        margin-bottom: 28px;
+    }
+
+    /* cards viram 1 coluna garantida */
     .cards-container {
         grid-template-columns: 1fr;
+        margin: 64px auto;
     }
 }
 
@@ -132,7 +160,11 @@
         padding: 56px 16px;
     }
 
+    .hero-content h1 {
+        font-size: 26px;
+    }
+
     .card {
-        padding: 20px;
+        padding: 22px;
     }
 }
