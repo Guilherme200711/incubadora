@@ -1,5 +1,5 @@
 /* =====================================================
-   HERO — DESKTOP FIRST (VISUAL CORRETO NO PC)
+   HERO — DESKTOP FIRST
 ===================================================== */
 
 .hero {
@@ -11,11 +11,7 @@
     position: relative;
 
     background:
-        linear-gradient(
-            to right,
-            rgba(0,0,0,.78),
-            rgba(0,0,0,.55)
-        ),
+        linear-gradient(to right, rgba(0,0,0,.78), rgba(0,0,0,.55)),
         url("/static/Designer.png") no-repeat right center;
 
     background-size: cover;
@@ -33,7 +29,7 @@
 
 .hero-content h2 {
     font-size: 20px;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
     opacity: .9;
 }
 
@@ -112,35 +108,33 @@
 }
 
 /* =====================================================
-   MOBILE — SOLUÇÃO PROFISSIONAL
-   (imagem NÃO é background)
+   MOBILE — LOGO PRIMEIRO, DEPOIS TEXTO + BOTÃO
 ===================================================== */
 
 @media (max-width: 768px) {
 
     .hero {
         min-height: auto;
-        padding: 64px 20px 48px;
+        padding: 56px 20px 48px;
 
         flex-direction: column;
         justify-content: center;
         text-align: center;
 
-        /* remove imagem do background */
+        /* 🔴 remove imagem do background */
         background: linear-gradient(
             to bottom,
-            rgba(0,0,0,.9),
+            rgba(0,0,0,.92),
             rgba(0,0,0,.7)
         );
     }
 
-    /* imagem vira bloco visual separado */
-    .hero::after {
+    /* ✅ LOGO NO TOPO (PRIMEIRO ELEMENTO VISUAL) */
+    .hero::before {
         content: "";
-        width: 100%;
-        max-width: 280px;
+        width: 200px;
         aspect-ratio: 1 / 1;
-        margin-top: 32px;
+        margin-bottom: 28px;
 
         background: url("/static/Designer.png") no-repeat center;
         background-size: contain;
@@ -151,15 +145,20 @@
     }
 
     .hero-content h1 {
-        font-size: 30px;
+        font-size: 26px;
     }
 
     .hero-content h2 {
-        font-size: 15px;
-        margin-bottom: 24px;
+        font-size: 14px;
+        margin-bottom: 20px;
     }
 
-    /* cards viram 1 coluna garantida */
+    .btn {
+        padding: 12px 28px;
+        font-size: 14px;
+    }
+
+    /* cards sempre 1 coluna no mobile */
     .cards-container {
         grid-template-columns: 1fr;
         margin: 64px auto;
@@ -171,12 +170,12 @@
 ===================================================== */
 
 @media (max-width: 420px) {
-    .hero {
-        padding: 56px 16px 40px;
+    .hero::before {
+        width: 170px;
     }
 
     .hero-content h1 {
-        font-size: 26px;
+        font-size: 24px;
     }
 
     .card {
