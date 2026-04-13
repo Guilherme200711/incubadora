@@ -1,5 +1,5 @@
 /* =====================================================
-   HERO — DEFINITIVO (SEM FAIXAS)
+   HERO — DESKTOP FIRST (VISUAL CORRETO NO PC)
 ===================================================== */
 
 .hero {
@@ -8,24 +8,23 @@
     align-items: center;
 
     padding: 0 80px;
+    position: relative;
 
-    /* Gradient ocupa tudo */
     background:
         linear-gradient(
             to right,
             rgba(0,0,0,.78),
             rgba(0,0,0,.55)
         ),
-        url("/static/Designer.png");
+        url("/static/Designer.png") no-repeat right center;
 
-    background-repeat: no-repeat;
-    background-position: right center;
     background-size: cover;
 }
 
 .hero-content {
     color: var(--white);
     max-width: 520px;
+    z-index: 2;
 }
 
 .hero-content h1 {
@@ -99,13 +98,12 @@
 }
 
 /* =====================================================
-   RESPONSIVO — NOTEBOOK / TABLET
+   TABLET
 ===================================================== */
 
 @media (max-width: 1024px) {
     .hero {
         padding: 0 48px;
-        background-position: center right;
     }
 
     .hero-content h1 {
@@ -114,29 +112,38 @@
 }
 
 /* =====================================================
-   RESPONSIVO — MOBILE
+   MOBILE — SOLUÇÃO PROFISSIONAL
+   (imagem NÃO é background)
 ===================================================== */
 
 @media (max-width: 768px) {
+
     .hero {
         min-height: auto;
-        padding: 72px 20px;
+        padding: 64px 20px 48px;
 
         flex-direction: column;
         justify-content: center;
         text-align: center;
 
-        background:
-            linear-gradient(
-                to bottom,
-                rgba(0,0,0,.85),
-                rgba(0,0,0,.65)
-            ),
-            url("/static/Designer.png");
+        /* remove imagem do background */
+        background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,.9),
+            rgba(0,0,0,.7)
+        );
+    }
 
-        background-repeat: no-repeat;
-        background-position: center bottom;
-        background-size: cover;
+    /* imagem vira bloco visual separado */
+    .hero::after {
+        content: "";
+        width: 100%;
+        max-width: 280px;
+        aspect-ratio: 1 / 1;
+        margin-top: 32px;
+
+        background: url("/static/Designer.png") no-repeat center;
+        background-size: contain;
     }
 
     .hero-content {
@@ -144,14 +151,15 @@
     }
 
     .hero-content h1 {
-        font-size: 32px;
+        font-size: 30px;
     }
 
     .hero-content h2 {
-        font-size: 16px;
-        margin-bottom: 28px;
+        font-size: 15px;
+        margin-bottom: 24px;
     }
 
+    /* cards viram 1 coluna garantida */
     .cards-container {
         grid-template-columns: 1fr;
         margin: 64px auto;
@@ -164,7 +172,7 @@
 
 @media (max-width: 420px) {
     .hero {
-        padding: 56px 16px;
+        padding: 56px 16px 40px;
     }
 
     .hero-content h1 {
