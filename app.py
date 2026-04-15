@@ -49,7 +49,7 @@ def contato():
 
 @app.route("/performance")
 def performance():
-    return render_template("perf.html")
+    return render_template("performance.html")
 
 # =====================
 # AUTORIZAÇÃO PERFORMANCE

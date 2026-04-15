@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/base.css">
     <link rel="stylesheet" href="/static/rank.css">
+    <link rel="shortcut icon" href="/static/Designer.png" type="image/x-icon">
+
 </head>
 <body>
 
@@ -41,7 +43,7 @@ fetch("/api/ideias")
         const aprovadas = data
             .filter(i => i.status === "Aprovada")
             .sort((a, b) => (b.pontuacao || 0) - (a.pontuacao || 0))
-            .slice(0, 10); // TOP 10
+            .slice(0, 10);
 
         if (!aprovadas.length) {
             ranking.innerHTML = "<p style='text-align:center'>Nenhuma ideia aprovada ainda.</p>";
@@ -51,9 +53,16 @@ fetch("/api/ideias")
         let html = "";
 
         aprovadas.forEach((i, index) => {
+            const posicao = index + 1;
+
+            let badgeClass = "rank-badge";
+            if (posicao === 1) badgeClass += " gold";
+            else if (posicao === 2) badgeClass += " silver";
+            else if (posicao === 3) badgeClass += " bronze";
+
             html += `
                 <div class="ranking-item">
-                    <div class="ranking-position">#${index + 1}</div>
+                    <div class="${badgeClass}">${posicao}</div>
 
                     <div class="ranking-text">
                         <strong>${i.nome}</strong>
@@ -66,11 +75,6 @@ fetch("/api/ideias")
         });
 
         ranking.innerHTML = html;
-    })
-    .catch(err => {
-        console.error(err);
-        document.getElementById("ranking").innerHTML =
-            "<p style='text-align:center'>Erro ao carregar ranking.</p>";
     });
 </script>
 

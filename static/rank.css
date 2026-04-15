@@ -51,6 +51,34 @@
 .ranking-item:first-child {
     border-left: 6px solid var(--primary);
 }
+.rank-badge {
+    min-width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #1f2933;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin-right: 16px;
+    font-size: 14px;
+}
+
+.rank-badge.gold {
+    background: #facc15;
+    color: #92400e;
+}
+
+.rank-badge.silver {
+    background: #d1d5db;
+    color: #374151;
+}
+
+.rank-badge.bronze {
+    background: #f59e0b;
+    color: #78350f;
+}
 
 /* RESPONSIVO */
 @media (max-width: 640px) {
