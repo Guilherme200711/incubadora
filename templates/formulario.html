@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>Enviar Ideia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="/static/base.css">
     <link rel="stylesheet" href="/static/forms.css">
 </head>
@@ -22,116 +20,116 @@
 </nav>
 
 <main class="form-page">
-    <form id="formIdeia">
+<form id="formIdeia">
 
-        <div class="form-header">
-            <h2>Enviar Ideia</h2>
-            <p>Preencha os campos abaixo</p>
-        </div>
+    <div class="form-header">
+        <h2>Enviar Ideia</h2>
+        <p>Preencha os campos abaixo</p>
+    </div>
 
-        <div class="form-group">
-            <label>Nome</label>
-            <input type="text" name="nome" required>
-        </div>
+    <div class="form-group">
+        <label>Nome Completo</label>
+        <input type="text" name="nome" required>
+    </div>
 
-        <div class="form-group">
-            <label>Matrícula</label>
-            <input type="text" name="matricula" required>
-        </div>
+    <div class="form-group">
+        <label>Matrícula</label>
+        <input type="text" name="matricula" required>
+    </div>
 
-        <div class="form-group">
-            <label>Área</label>
-            <select name="area" required>
-                <option value="">Selecione</option>
-                <option>Paint Shop</option>
-            </select>
-        </div>
+    <div class="form-group">
+        <label>Área</label>
+        <select name="area" required>
+            <option value="">Selecione</option>
+            <option>Processo</option>
+            <option>Sealer</option>
+            <option>UDC</option>
+            <option>ED Sanding</option>
+            <option>Top Coat Pintura</option>
+            <option>Finish Pintura</option>
+            <option>Performance</option>
+            <option>Kaizen</option>
+            <option>RTC</option>
+            <option>Mascaramento Biton</option>
+            <option>Injetora</option>
+            <option>Ferramentaria</option>
+            <option>Carregamento</option>
+            <option>Top Coat Plástico</option>
+            <option>Submontagem</option>
+            <option>T&C</option>
+            <option>Body</option>
+            <option>Estamparia</option>
+        </select>
+    </div>
 
-        <div class="form-group">
-            <label>Supervisor</label>
-            <select name="supervisor" required>
-                <option value="">Selecione</option>
-                <option>Ana Serra</option>
-                <option>Gabriel Santiago</option>
-                <option>Sandro Santos</option>
-                <option>Thiago Menezes</option>
-                <option>Marcelo Freitas</option>
-            </select>
-        </div>
+    <div class="form-group">
+        <label>Gestor Direto</label>
+        <input type="text" name="supervisor" required>
+    </div>
 
-        <!-- NOVOS CAMPOS -->
+    <div class="form-group">
+        <label>Descrição da Ideia</label>
+        <textarea name="descricao" required></textarea>
+    </div>
 
-        <div class="form-group">
-            <label>Equipamento</label>
-            <select name="equipamento" required>
-                <option value="">Selecione</option>
-                <option>Cabine</option>
-                <option>Robô</option>
-                <option>Esteira</option>
-                <option>Outro</option>
-            </select>
-        </div>
+    <div class="form-group">
+        <label>Descreva o antes</label>
+        <textarea name="antes" required></textarea>
+    </div>
 
-        <div class="form-group">
-            <label>Peça</label>
-            <select name="peca" required>
-                <option value="">Selecione</option>
-                <option>Porta</option>
-                <option>Capô</option>
-                <option>Para-choque</option>
-                <option>Outra</option>
-            </select>
-        </div>
+    <div class="form-group">
+        <label>Descreva o depois</label>
+        <textarea name="depois" required></textarea>
+    </div>
 
-        <div class="form-group">
-            <label>Material</label>
-            <select name="material" required>
-                <option value="">Selecione</option>
-                <option>Aço</option>
-                <option>Plástico</option>
-                <option>Alumínio</option>
-                <option>Outro</option>
-            </select>
-        </div>
+    <div class="form-group">
+        <label>Impacto da ideia</label>
+        <select name="equipamento" required>
+            <option value="">Selecione</option>
+            <option>Equipamento</option>
+            <option>Peça</option>
+            <option>Material</option>
+        </select>
+    </div>
 
-        <div class="form-group">
-            <label>Part Number ou Descrição Associada</label>
-            <input type="text" name="part_number" required>
-        </div>
+    <div class="form-group">
+        <label>Peça afetada (se aplicável)</label>
+        <input type="text" name="peca">
+    </div>
 
-        <div class="form-group">
-            <label>Antes da Ideia</label>
-            <textarea name="antes" ></textarea>
-        </div>
+    <div class="form-group">
+        <label>Material afetado (se aplicável)</label>
+        <input type="text" name="material">
+    </div>
 
-        <div class="form-group">
-            <label>Depois da Ideia</label>
-            <textarea name="depois" ></textarea>
-        </div>
+    <div class="form-group">
+        <label>Part Number / MABEC</label>
+        <input type="text" name="part_number">
+    </div>
 
-        <div class="form-group">
-            <label>Ganho Estimado</label>
-            <select name="ganho" required>
-                <option value="">Selecione</option>
-                <option>Baixo</option>
-                <option>Médio</option>
-                <option>Alto</option>
-            </select>
-        </div>
+    <div class="form-group">
+        <label>Ganho Estimado</label>
+        <select name="ganho" required>
+            <option value="">Selecione</option>
+            <option>Baixo</option>
+            <option>Médio</option>
+            <option>Alto</option>
+        </select>
+    </div>
 
-        <div class="form-group">
-            <label>Área de Aplicação da Ideia</label>
-            <input type="text" name="area_aplicacao" required>
-        </div>
+    <div class="form-group">
+        <label>Área de aplicação da ideia</label>
+        <input type="text" name="area_aplicacao" required>
+    </div>
 
-        <button type="submit" class="btn">Enviar Ideia</button>
-
-    </form>
+    <button type="submit" class="btn">Enviar Ideia</button>
+</form>
 </main>
 
 <footer class="footer">
     © 2026 Nissan - Paint Shop Performance
 </footer>
+
 <script src="/static/script.js"></script>
 </body>
 </html>

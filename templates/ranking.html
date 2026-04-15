@@ -34,29 +34,44 @@
 
 <script>
 fetch("/api/ideias")
-.then(r => r.json())
-.then(data => {
-    const ranking = document.getElementById("ranking");
-    const aprovadas = data
-        .filter(i => i.status === "Aprovada")
-        .sort((a, b) => b.pontuacao - a.pontuacao);
+    .then(res => res.json())
+    .then(data => {
+        const ranking = document.getElementById("ranking");
 
-    if (!aprovadas.length) {
-        ranking.innerHTML = "<p style='text-align:center'>Nenhuma ideia aprovada.</p>";
-        return;
-    }
+        const aprovadas = data
+            .filter(i => i.status === "Aprovada")
+            .sort((a, b) => (b.pontuacao || 0) - (a.pontuacao || 0))
+            .slice(0, 10); // TOP 10
 
-    aprovadas.forEach(i => {
-        ranking.innerHTML += `
-        <div class="ranking-item">
-            <div class="ranking-text">
-                <strong>${i.descricao}</strong>
-                <span>${i.nome} • ${i.area}</span>
-            </div>
-            <div class="ranking-score">${i.pontuacao}</div>
-        </div>`;
+        if (!aprovadas.length) {
+            ranking.innerHTML = "<p style='text-align:center'>Nenhuma ideia aprovada ainda.</p>";
+            return;
+        }
+
+        let html = "";
+
+        aprovadas.forEach((i, index) => {
+            html += `
+                <div class="ranking-item">
+                    <div class="ranking-position">#${index + 1}</div>
+
+                    <div class="ranking-text">
+                        <strong>${i.nome}</strong>
+                        <span>${i.area}</span>
+                    </div>
+
+                    <div class="ranking-score">${i.pontuacao}</div>
+                </div>
+            `;
+        });
+
+        ranking.innerHTML = html;
+    })
+    .catch(err => {
+        console.error(err);
+        document.getElementById("ranking").innerHTML =
+            "<p style='text-align:center'>Erro ao carregar ranking.</p>";
     });
-});
 </script>
 
 </body>

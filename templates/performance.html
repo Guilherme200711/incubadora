@@ -5,7 +5,7 @@
     <title>Painel da Performance | Incubadora Nissan</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/static/perf.css">
+    <link rel="stylesheet" href="/static/perf.css">
 </head>
 <body>
 
@@ -16,65 +16,73 @@
     </div>
 
     <div class="topbar-right">
-        <button class="btn-secondary"><a href="/">← Voltar</a></button>
+        <button class="btn-secondary">
+            <a href="/">← Voltar</a>
+        </button>
     </div>
 </header>
 
 <main class="container">
 
+    <!-- CABEÇALHO -->
     <section class="header-section">
         <h1>Painel da Performance</h1>
-        <p>Gestão, avaliação e acompanhamento das ideias submetidas pelos colaboradores.</p>
+        <p>
+            Gestão, avaliação e acompanhamento das ideias submetidas pelos colaboradores.
+        </p>
     </section>
 
+    <!-- FILTROS -->
     <section class="filters">
-        <input type="text" placeholder="Buscar por nome ou matrícula">
-        <select>
-            <option>Todos os status</option>
-            <option>Aprovada</option>
-            <option>Em análise</option>
-            <option>Reprovada</option>
+        <input
+            type="text"
+            placeholder="Buscar por nome ou matrícula"
+            aria-label="Buscar ideia"
+        >
+
+        <select aria-label="Filtrar por status">
+            <option value="">Todos os status</option>
+            <option value="Aprovada">Aprovada</option>
+            <option value="Em análise">Em análise</option>
+            <option value="Reprovada">Reprovada</option>
         </select>
     </section>
 
+    <!-- TABELA -->
     <section class="table-wrapper">
-        <table>
+        <table aria-label="Tabela de ideias da Performance">
+
+            <!-- Define larguras mais “corporativas” -->
+            <colgroup>
+                <col style="width: 60px">
+                <col style="width: 200px">
+                <col style="width: 120px">
+                <col style="width: 160px">
+                <col style="width: auto">
+                <col style="width: 160px">
+                <col style="width: 120px">
+                <col style="width: 140px">
+            </colgroup>
+
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Matrícula</th>
-                    <th>Área</th>
-                    <th>Ideia</th>
-                    <th>Status</th>
-                    <th>Pontuação</th>
-                    <th>Ações</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Matrícula</th>
+                    <th scope="col">Área</th>
+                    <th scope="col">Ideia</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Pontuação</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
 
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Guilherme</td>
-                    <td>9001</td>
-                    <td>Paint Shop</td>
-                    <td>Incubadora</td>
-                    <td>
-                        <select class="status approved">
-                            <option>Aprovada</option>
-                            <option>Em análise</option>
-                            <option>Reprovada</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="number" value="10" class="score-input">
-                    </td>
-                    <td class="actions">
-                        <button class="icon save" title="Salvar">💾</button>
-                        <button class="icon delete" title="Excluir">🗑️</button>
-                    </td>
-                </tr>
+            <!-- IMPORTANTE:
+                 tbody vazio, 100% controlado pelo JS -->
+            <tbody id="tabelaIdeias">
+                <!-- linhas inseridas dinamicamente -->
             </tbody>
+
         </table>
     </section>
 
@@ -83,6 +91,7 @@
 <footer class="footer">
     © 2026 Nissan · Paint Shop Performance · Incubadora de Ideias
 </footer>
+
 <script src="/static/perf.js"></script>
 
 </body>

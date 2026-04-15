@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, session
 from flask_cors import CORS
 import psycopg2
 import os
@@ -7,7 +7,16 @@ import os
 # APP
 # =====================
 app = Flask(__name__, template_folder="templates", static_folder="static")
+app.secret_key = os.getenv("SECRET_KEY", "incubadora-nissan-performance")
 CORS(app)
+
+# =====================
+# CONFIG PERFORMANCE
+# =====================
+SENHA_PERFORMANCE = "performance2026"
+
+def performance_autorizado():
+    return session.get("performance_autorizado") is True
 
 # =====================
 # BANCO
@@ -34,16 +43,38 @@ def formulario():
 def ranking():
     return render_template("ranking.html")
 
-@app.route("/performance")
-def performance():
-    return render_template("performance.html")
-
 @app.route("/contato")
 def contato():
     return render_template("contato.html")
 
+@app.route("/performance")
+def performance():
+    return render_template("perf.html")
+
 # =====================
-# API - IDEIAS
+# AUTORIZAÇÃO PERFORMANCE
+# =====================
+@app.route("/api/performance/auth", methods=["POST"])
+def auth_performance():
+    dados = request.json
+
+    if dados.get("senha") == SENHA_PERFORMANCE:
+        session["performance_autorizado"] = True
+        return jsonify({"ok": True}), 200
+
+    return jsonify({"erro": "Senha incorreta"}), 401
+
+
+@app.before_request
+def proteger_apis_performance():
+    if request.path.startswith("/api/performance"):
+        if request.path.endswith("/auth"):
+            return
+        if not performance_autorizado():
+            return jsonify({"erro": "Não autorizado"}), 401
+
+# =====================
+# API - IDEIAS (FORMULÁRIO)
 # =====================
 @app.route("/api/ideias", methods=["POST"])
 def enviar_ideia():
@@ -54,33 +85,25 @@ def enviar_ideia():
 
     cur.execute("""
         INSERT INTO ideias (
-            nome,
-            matricula,
-            area,
-            supervisor,
-            equipamento,
-            peca,
-            material,
-            part_number,
-            antes,
-            depois,
-            ganho,
-            area_aplicacao
+            nome, matricula, area, supervisor, descricao,
+            equipamento, peca, material, part_number,
+            antes, depois, ganho, area_aplicacao
         )
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """, (
-        dados["nome"],
-        dados["matricula"],
-        dados["area"],
-        dados["supervisor"],
-        dados["equipamento"],
-        dados["peca"],
-        dados["material"],
-        dados["part_number"],
-        dados["antes"],
-        dados["depois"],
-        dados["ganho"],
-        dados["area_aplicacao"]
+        dados.get("nome"),
+        dados.get("matricula"),
+        dados.get("area"),
+        dados.get("supervisor"),
+        dados.get("descricao"),
+        dados.get("equipamento"),
+        dados.get("peca"),
+        dados.get("material"),
+        dados.get("part_number"),
+        dados.get("antes"),
+        dados.get("depois"),
+        dados.get("ganho"),
+        dados.get("area_aplicacao")
     ))
 
     conn.commit()
@@ -127,22 +150,8 @@ def listar_ideias_performance():
 
     cur.execute("""
         SELECT
-            id,
-            nome,
-            matricula,
-            area,
-            supervisor,
-            status,
-            pontuacao,
-            avaliador,
-            equipamento,
-            peca,
-            material,
-            part_number,
-            antes,
-            depois,
-            ganho,
-            area_aplicacao
+            id, nome, matricula, area,
+            descricao, status, pontuacao
         FROM ideias
         ORDER BY data_criacao DESC
     """)
@@ -158,18 +167,9 @@ def listar_ideias_performance():
             "nome": r[1],
             "matricula": r[2],
             "area": r[3],
-            "supervisor": r[4],
+            "descricao": r[4],
             "status": r[5],
-            "pontuacao": r[6],
-            "avaliador": r[7],
-            "equipamento": r[8],
-            "peca": r[9],
-            "material": r[10],
-            "part_number": r[11],
-            "antes": r[12],
-            "depois": r[13],
-            "ganho": r[14],
-            "area_aplicacao": r[15]
+            "pontuacao": r[6]
         })
 
     return jsonify(ideias), 200
@@ -191,7 +191,7 @@ def avaliar_ideia():
     """, (
         dados["status"],
         dados["pontuacao"],
-        dados["avaliador"],
+        "Performance",
         dados["id"]
     ))
 
@@ -214,7 +214,6 @@ def excluir_ideia(ideia_id):
     conn.close()
 
     return jsonify({"mensagem": "Ideia excluída"}), 200
-
 
 # =====================
 # START
