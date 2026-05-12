@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro | Incubadora de Ideias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static/base.css">
+    <link rel="stylesheet" href="/static/forms.css">
+    <link rel="shortcut icon" href="/static/Designer.png" type="image/x-icon">
+</head>
+<body>
+
+<main class="form-page">
+
+<form id="cadastroForm">
+
+    <div class="form-header">
+        <h2>Criar Conta</h2>
+        <p>Primeiro acesso ao sistema</p>
+    </div>
+
+    <div class="form-group">
+        <label>Nome Completo</label>
+        <input type="text" name="nome" required>
+    </div>
+
+    <div class="form-group">
+        <label>Matrícula</label>
+        <input type="text" name="matricula" required>
+    </div>
+
+    <div class="form-group">
+        <label>Senha</label>
+        <input type="password" name="senha" required>
+    </div>
+
+    <button type="submit" class="btn">Cadastrar</button>
+
+    <p style="margin-top:16px; text-align:center">
+        Já tem conta?
+        <a href="/login"><b>Voltar para login</b></a>
+    </p>
+
+</form>
+
+</main>
+
+<script>
+document.getElementById("cadastroForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const dados = Object.fromEntries(
+        new FormData(e.target).entries()
+    );
+
+    // 🔵 LOADING BONITO
+    Swal.fire({
+        title: 'Cadastrando...',
+        text: 'Criando sua conta',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
+    try {
+        const resp = await fetch("/api/cadastro", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dados)
+        });
+
+        if (resp.ok) {
+
+            // ✅ SUCESSO
+            Swal.fire({
+                icon: 'success',
+                title: 'Conta criada!',
+                text: 'Redirecionando...',
+                confirmButtonColor: '#c3002f',
+                timer: 1500,
+                showConfirmButton: false
+            });
+
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1500);
+
+        } else {
+
+            // ❌ ERRO (ex: usuário já existe)
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro no cadastro',
+                text: 'Usuário já existe ou dados inválidos.',
+                confirmButtonColor: '#c3002f'
+            });
+
+        }
+
+    } catch (err) {
+
+        // ❌ ERRO DE CONEXÃO
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro de conexão',
+            text: 'Não foi possível conectar ao servidor.',
+            confirmButtonColor: '#c3002f'
+        });
+
+    }
+
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

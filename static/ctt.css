@@ -1,8 +1,3 @@
-/* =====================================================
-   CONTATO — VISUAL CORPORATIVO REAL
-===================================================== */
-
-/* header */
 .page-header {
     text-align: center;
     padding: 70px 24px 40px;
@@ -20,14 +15,12 @@
     color: var(--text-muted);
 }
 
-/* container central */
 .contact-container {
     max-width: 520px;
     margin: 0 auto 100px;
     padding: 0 24px;
 }
 
-/* CARD (forçado pra aparecer) */
 .contact-container > div {
     background: var(--white);
     padding: 44px 48px;
@@ -40,7 +33,6 @@
     gap: 26px;
 }
 
-/* linhas */
 .contact-container p {
     font-size: 16px;
     color: var(--text-main);
@@ -50,7 +42,6 @@
     gap: 4px;
 }
 
-/* rótulo */
 .contact-container strong {
     font-size: 13px;
     font-weight: 700;
@@ -59,9 +50,6 @@
     color: var(--primary);
 }
 
-/* =====================================================
-   RESPONSIVO
-===================================================== */
 @media (max-width: 640px) {
     .contact-container > div {
         padding: 32px 28px;

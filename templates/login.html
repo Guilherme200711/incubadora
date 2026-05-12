@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Incubadora de Ideias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static/base.css">
+    <link rel="stylesheet" href="/static/forms.css">
+    <link rel="shortcut icon" href="/static/Designer.png" type="image/x-icon">
+</head>
+<body>
+
+<main class="form-page">
+
+<form id="loginForm">
+
+    <div class="form-header">
+        <h2>Acesso ao Sistema</h2>
+        <p>Entre com sua matrícula e e-mail</p>
+    </div>
+
+    <div class="form-group">
+        <label>Matrícula</label>
+        <input type="text" name="matricula" required>
+    </div>
+
+    <div class="form-group">
+        <label>Senha</label>
+        <input type="password" name="senha" required>
+    </div>
+
+    <button type="submit" class="btn">Entrar</button>
+
+    <p style="margin-top:16px; text-align:center">
+        Primeiro acesso?
+        <a href="/cadastro"><b>Criar conta</b></a>
+    </p>
+
+</form>
+
+</main>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const dados = Object.fromEntries(
+        new FormData(e.target).entries()
+    );
+
+    // 🔵 LOADING bonito
+    Swal.fire({
+        title: 'Entrando...',
+        text: 'Validando acesso',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
+    try {
+        const resp = await fetch("/api/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dados)
+        });
+
+        if (resp.ok) {
+
+            // ✅ SUCESSO bonito
+            Swal.fire({
+                icon: 'success',
+                title: 'Login realizado!',
+                text: 'Redirecionando...',
+                confirmButtonColor: '#c3002f',
+                timer: 1500,
+                showConfirmButton: false
+            });
+
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1500);
+
+        } else {
+
+            // ❌ ERRO bonito
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro no login',
+                text: 'Matrícula ou senha inválidos.',
+                confirmButtonColor: '#c3002f'
+            });
+
+        }
+
+    } catch (err) {
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro de conexão',
+            text: 'Não foi possível conectar ao servidor.',
+            confirmButtonColor: '#c3002f'
+        });
+
+    }
+
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

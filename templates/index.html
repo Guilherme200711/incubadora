@@ -2,12 +2,15 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Incubadora de Ideias - Paint Shop</title>
+    <title>Incubadora de Ideias</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/base.css">
+
     <link rel="stylesheet" href="/static/index.css">
-    <link rel="shortcut icon" href="/static/Designer.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/base.css">
+
+    <link rel="shortcut icon" href="/static/Designer.png">
 </head>
+
 <body>
 
 <nav class="navbar">
@@ -17,41 +20,60 @@
         <li><a href="/formulario">Formulário</a></li>
         <li><a href="/ranking">Ranking</a></li>
         <li><a href="/contato">Contato</a></li>
+        <li><a href="/logout">Sair</a></li>
     </ul>
 </nav>
 
 <section class="hero">
     <div class="hero-content">
-        <h1>Incubadora de Ideias</h1>
-        <h2>Paint & Plastic</h2>
-        <a href="/formulario" class="btn">Enviar Ideia</a>
+        <h1>Bem-vindo, {{ nome }} 👋</h1>
+        <h2>Matrícula: {{ matricula }}</h2>
     </div>
 </section>
 
 <section class="sobre">
+
     <h2>“Ideias que conectam, soluções que transformam.”</h2>
+
+    <section class="minhas-ideias">
+        <div class="minhas-ideias-header">
+            <h2>Minhas Ideias </h2>
+        </div>
+
+        <div id="listaIdeias" class="lista-ideias"></div>
+    </section>
+
 </section>
 
 <section class="cards-container">
+
     <div class="card">
         <h3>Enviar Ideia</h3>
-        <p>Cadastre sua sugestão de melhoria ou inovação operacional.</p>
+        <p>Cadastre uma sugestão de melhoria ou inovação operacional.</p>
+        <a href="/formulario" class="card-btn">Nova Ideia</a>
     </div>
 
     <div class="card">
         <h3>Ranking</h3>
-        <p>Acompanhe as ideias com maior impacto e pontuação.</p>
+        <p>Veja as ideias com maior impacto no Paint Shop.</p>
+        <a href="/ranking" class="card-btn">Ver Ranking</a>
     </div>
 
-    <div class="card">
+    <div class="card card-click" onclick="window.location.href='/contato'">
         <h3>Contato</h3>
-        <p>Fale com o time responsável pela incubadora.</p>
+        <p>Em caso de dúvidas entre em contato</p>
+        <a href="/contato" class="card-btn">Entre em Contato</a>
     </div>
+
 </section>
 
 <footer class="footer">
     © 2026 Nissan - Paint Shop Performance
 </footer>
+
+<script src="/static/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </body>
 </html>

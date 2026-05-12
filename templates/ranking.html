@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/base.css">
     <link rel="stylesheet" href="/static/rank.css">
-    <link rel="shortcut icon" href="/static/Designer.png" type="image/x-icon">
-
+    <link rel="shortcut icon" href="/static/Designer.png">
 </head>
 <body>
 
@@ -24,7 +23,7 @@
 <main>
     <div class="page-header">
         <h2>Ranking de Ideias</h2>
-        <p>Ideias aprovadas com maior impacto</p>
+        <p>Ideias aprovadas com maior pontuação</p>
     </div>
 
     <div class="ranking-container" id="ranking"></div>
@@ -35,41 +34,39 @@
 </footer>
 
 <script>
-fetch("/api/ideias")
+fetch("/api/ranking")
     .then(res => res.json())
     .then(data => {
         const ranking = document.getElementById("ranking");
 
-        const aprovadas = data
-            .filter(i => i.status === "Aprovada")
-            .sort((a, b) => (b.pontuacao || 0) - (a.pontuacao || 0))
-            .slice(0, 10);
-
-        if (!aprovadas.length) {
+        if (!data.length) {
             ranking.innerHTML = "<p style='text-align:center'>Nenhuma ideia aprovada ainda.</p>";
             return;
         }
 
         let html = "";
 
-        aprovadas.forEach((i, index) => {
+        data.forEach((i, index) => {
             const posicao = index + 1;
 
-            let badgeClass = "rank-badge";
-            if (posicao === 1) badgeClass += " gold";
-            else if (posicao === 2) badgeClass += " silver";
-            else if (posicao === 3) badgeClass += " bronze";
+            let badge = "rank-badge";
+            if (posicao === 1) badge += " gold";
+            else if (posicao === 2) badge += " silver";
+            else if (posicao === 3) badge += " bronze";
 
             html += `
                 <div class="ranking-item">
-                    <div class="${badgeClass}">${posicao}</div>
+                    <div class="${badge}">${posicao}</div>
 
                     <div class="ranking-text">
                         <strong>${i.nome}</strong>
-                        <span>${i.area}</span>
+                        <span><b>Área:</b> ${i.area}</span>
+                        <span><b>Ideia:</b> ${i.descricao}</span>
                     </div>
 
-                    <div class="ranking-score">${i.pontuacao}</div>
+                    <div class="ranking-score">
+                        ${i.pontuacao ?? 0}
+                    </div>
                 </div>
             `;
         });

@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/static/base.css">
     <link rel="stylesheet" href="/static/forms.css">
     <link rel="shortcut icon" href="/static/Designer.png" type="image/x-icon">
-
 </head>
 <body>
 
@@ -24,25 +23,26 @@
 <main class="form-page">
 <form id="formIdeia">
 
+    <!-- DADOS DO COLABORADOR (LOGIN) -->
     <div class="form-header">
         <h2>Enviar Ideia</h2>
-        <p>Preencha os campos abaixo</p>
+        <p>Preencha os campos conforme o formulário oficial de projetos</p>
     </div>
 
     <div class="form-group">
         <label>Nome Completo</label>
-        <input type="text" name="nome" required>
+        <input type="text" name="nome" value="{{ nome }}" readonly required>
     </div>
 
     <div class="form-group">
         <label>Matrícula</label>
-        <input type="text" name="matricula" required>
+        <input type="text" name="matricula" value="{{ matricula }}" readonly required>
     </div>
 
     <div class="form-group">
         <label>Área</label>
         <select name="area" required>
-            <option value="">Selecione</option>
+            <option selected>{{ area }}</option>
             <option>Processo</option>
             <option>Sealer</option>
             <option>UDC</option>
@@ -58,7 +58,7 @@
             <option>Carregamento</option>
             <option>Top Coat Plástico</option>
             <option>Submontagem</option>
-            <option>T&C</option>
+            <option>T&amp;C</option>
             <option>Body</option>
             <option>Estamparia</option>
         </select>
@@ -69,38 +69,35 @@
         <input type="text" name="supervisor" required>
     </div>
 
+    <!-- DESCRIÇÃO DA IDEIA -->
     <div class="form-group">
         <label>Descrição da Ideia</label>
         <textarea name="descricao" required></textarea>
     </div>
 
     <div class="form-group">
-        <label>Descreva o antes</label>
-        <textarea name="antes" required></textarea>
+        <label>Antes e Depois</label>
+        <textarea name="antes_depois" required></textarea>
     </div>
 
+        <!-- DADOS EXCEL -->
     <div class="form-group">
-        <label>Descreva o depois</label>
-        <textarea name="depois" required></textarea>
-    </div>
-
-    <div class="form-group">
-        <label>Impacto da ideia</label>
-        <select name="equipamento" required>
+        <label>Saving Estimado</label>
+        <select name="ganho" required>
             <option value="">Selecione</option>
-            <option>Equipamento</option>
-            <option>Peça</option>
-            <option>Material</option>
+            <option value="3">Baixo</option>
+            <option value="6">Médio</option>
+            <option value="9">Alto</option>
         </select>
     </div>
 
     <div class="form-group">
-        <label>Peça afetada (se aplicável)</label>
+        <label>Peça Afetada (se aplicável)</label>
         <input type="text" name="peca">
     </div>
 
     <div class="form-group">
-        <label>Material afetado (se aplicável)</label>
+        <label>Material Afetado (se aplicável)</label>
         <input type="text" name="material">
     </div>
 
@@ -108,23 +105,31 @@
         <label>Part Number / MABEC</label>
         <input type="text" name="part_number">
     </div>
-
+        <!-- IMPACTO -->
     <div class="form-group">
-        <label>Ganho Estimado</label>
-        <select name="ganho" required>
+        <label>Impacto da Ideia</label>
+        <select name="impacto" required>
             <option value="">Selecione</option>
-            <option>Baixo</option>
-            <option>Médio</option>
-            <option>Alto</option>
+            <option>Material</option>
+            <option>Processo</option>
+            <option>Qualidade</option>
+            <option>Segurança</option>
+            <option>Custo</option>
+            <option>Produtividade</option>
         </select>
+    </div>
+    <div class="form-group">
+        <label>Equipamento (se aplicável)</label>
+        <input type="text" name="equipamento">
     </div>
 
     <div class="form-group">
-        <label>Área de aplicação da ideia</label>
+        <label>Área de Aplicação da Ideia</label>
         <input type="text" name="area_aplicacao" required>
     </div>
 
     <button type="submit" class="btn">Enviar Ideia</button>
+
 </form>
 </main>
 
