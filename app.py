@@ -6,6 +6,8 @@ from openpyxl import load_workbook
 from datetime import datetime
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
+app.config["SESSION_COOKIE_SAMESITE"] = "None"
+app.config["SESSION_COOKIE_SECURE"] = True
 app.secret_key = "incubadora-nissan"
 CORS(app)
 
