@@ -18,11 +18,14 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 SENHA_PERFORMANCE = "performance2026"
 
 
-# ✅ CONEXÃO CORRETA COM SSL (SUPABASE / RENDER)
+# ✅ CONEXÃO COMPATÍVEL COM SUPABASE + RENDER
 def conectar_db():
     return psycopg2.connect(DATABASE_URL, sslmode="require")
 
 
+# ======================
+# ROTAS DE PÁGINA
+# ======================
 @app.route("/")
 def index():
     if "usuario_id" not in session:
@@ -74,6 +77,16 @@ def baixar_excel():
     return send_file("Performance_Projetos.xlsx", as_attachment=True)
 
 
+@app.route("/ranking")
+def ranking():
+    return render_template("ranking.html")
+
+
+@app.route("/contato")
+def contato():
+    return render_template("contato.html")
+
+
 # ======================
 # LOGIN
 # ======================
@@ -111,7 +124,7 @@ def api_login():
 
 
 # ======================
-# CADASTRO
+# CADASTRO (SEM RETURNING — COMPATÍVEL COM POOLER)
 # ======================
 @app.route("/api/cadastro", methods=["POST"])
 def api_cadastro():
@@ -122,20 +135,24 @@ def api_cadastro():
     conn = conectar_db()
     cur = conn.cursor()
 
+    # verifica duplicidade
     cur.execute("SELECT id FROM usuarios WHERE matricula = %s", (d["matricula"],))
     if cur.fetchone():
         cur.close()
         conn.close()
         return jsonify({"erro": "Usuário já existe"}), 400
 
+    # INSERT SEM RETURNING
     cur.execute("""
         INSERT INTO usuarios (nome, matricula, senha)
         VALUES (%s, %s, %s)
-        RETURNING id
     """, (d["nome"], d["matricula"], d["senha"]))
 
-    user_id = cur.fetchone()[0]
     conn.commit()
+
+    # busca o id depois (seguro no pooler)
+    cur.execute("SELECT id FROM usuarios WHERE matricula = %s", (d["matricula"],))
+    user_id = cur.fetchone()[0]
 
     session["usuario_id"] = user_id
     session["nome"] = d["nome"]
@@ -191,16 +208,6 @@ def enviar_ideia():
     conn.close()
 
     return jsonify({"ok": True})
-
-
-@app.route("/ranking")
-def ranking():
-    return render_template("ranking.html")
-
-
-@app.route("/contato")
-def contato():
-    return render_template("contato.html")
 
 
 # ======================
@@ -259,7 +266,7 @@ def listar_ideias():
     ])
 
 
-# ✅ ROTA CORRIGIDA (SEM HTML ESCAPADO)
+# ✅ ROTA DELETAR CORRETA
 @app.route("/api/performance/deletar/<int:id>", methods=["DELETE"])
 def deletar_ideia(id):
     conn = conectar_db()
